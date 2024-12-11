@@ -1,0 +1,38 @@
+{
+  "name": "mrsatik/cli-parse",
+  "description": "Console commands module",
+  "minimum-stability": "stable",
+  "keywords": [
+    "cli"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Perchenok Alexey",
+      "email": "silenthill.sat@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "mrsatik\\Console\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "mrsatik\\ConsoleTest\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": [
+      "phpunit"
+    ]
+  }
+}
+
