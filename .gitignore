@@ -2,3 +2,6 @@
 .project
 .settings/
 .git
+.phpunit*
+composer.lock
+vendor

@@ -1,13 +1,16 @@
 <?php
-
+declare(strict_types = 1);
 namespace mrsatik\Console;
 
 use mrsatik\Console\Exception\RouteException;
 
 class Application
 {
+
     /**
-     * Apprication config
+     * Apprication
+     * config
+     *
      * @var array
      */
     private $config = [];
@@ -20,7 +23,9 @@ class Application
     }
 
     /**
-     * Run function
+     * Run
+     * function
+     *
      * @return mixed
      */
     public function run()
@@ -29,28 +34,36 @@ class Application
     }
 
     /**
-     * Handles the specified request.
+     * Handles
+     * the
+     * specified
+     * request.
      */
     private function handleRequest()
     {
-        list($route, $action, $params) = (new Request($this->config))->resolve();
+        list ($route, $action, $params) = (new Request())->resolve();
         $result = $this->runAction($route, $action, $params);
 
         return $result;
     }
 
     /**
-     * Run Action in controller
+     * Run
+     * Action
+     * in
+     * controller
+     *
      * @param string $route
      * @param string $action
      * @param array $params
      */
     private function runAction(string $route, string $action, array $params = [])
     {
-        if(array_key_exists($route, $this->config['routing']) === false) {
+        if (array_key_exists($route, $this->config['routing']) === false) {
             throw new RouteException('Route not exist');
         }
 
-        return (new $this->config['routing'][$route][0]())->$action($params);
+        $action = \sprintf('action%s', ucfirst($action));
+        return (new $this->config['routing'][$route][0]($this->config))->$action($params);
     }
 }
